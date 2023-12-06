@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.21.0-bookworm AS build
+FROM golang:1.21.0-bookworm AS build
 
 WORKDIR /usr/src
 
@@ -7,12 +7,8 @@ RUN apt update && apt install build-essential -y
 ADD go.mod go.sum ./
 RUN go mod download && go mod verify
 
-ARG TARGETOS TARGETARCH
-
-RUN GOOS=$TARGETOS GOARCH=$TARGETARCH \
-    go build github.com/jackc/tern/v2
-RUN GOOS=$TARGETOS GOARCH=$TARGETARCH \
-    go build github.com/kyleconroy/sqlc/cmd/sqlc
+RUN go build github.com/jackc/tern/v2
+RUN go build github.com/kyleconroy/sqlc/cmd/sqlc
 
 FROM debian:bookworm-slim
 
