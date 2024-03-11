@@ -5,7 +5,7 @@ go 1.21.0
 require (
 	github.com/jackc/tern/v2 v2.1.1
 	github.com/sqlc-dev/sqlc v1.25.0
-	google.golang.org/protobuf v1.32.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (
